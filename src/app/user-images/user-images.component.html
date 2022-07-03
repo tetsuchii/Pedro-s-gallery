@@ -1,0 +1,30 @@
+<div class="container">
+  <h1 class="text-center">{{this.ownername._content}}'s gallery 🦔</h1>
+  <h2><a role="button" (click)="getFavs(this.owner!)" routerLink="/user/favs">Let's see the favs! ✨</a></h2>
+  <div class="row">
+      <div class="col-sm-12 col-md-6 col-lg-4 p-3" *ngFor="let image of images">
+          <div class="card" role="button" (click)="getInfo(image.id)" (click)="popup = true">
+                  <img src="{{image.url}}_m.jpg" title="{{image.title}}">
+          </div>
+          <div class="overlay" *ngIf="popup && image.id === infos.id">
+            <div class="popup">
+              <h2>{{image.title}}</h2>
+              <a class="close" (click)="popup = false">&times;</a>
+              <div class="content">
+              <p>Owner: <a role="button" (click)="searchO(image.owner)" routerLink="/user">{{infos.owner.username}}</a></p>
+              <p>Description: {{description._content || 'There is no description.'}}</p>
+              <p>Tags: <span *ngFor="let tag of tags"><a role="button" (click)="searchTag(tag.raw)" routerLink="/tag">{{tag.raw}} </a> </span></p>
+            </div>
+            </div>
+          </div>
+      </div>
+  </div>
+  <div
+      class="search-results"
+      infiniteScroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      (scrolled)="popup=false"
+      (scrolled)="onScroll()"
+  ></div>
+</div>
