@@ -1,5 +1,6 @@
-# Flickrsearch
+# Pedro's gallery
 
+An Angular project usint Flickr REST API to search and watch images.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.3.
 
 ## Development server
